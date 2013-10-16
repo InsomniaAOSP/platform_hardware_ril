@@ -28,7 +28,11 @@ extern "C" {
 #endif
 
 #define RIL_VERSION 8     /* Current version */
+#ifdef LEGACY_RIL
+#define RIL_VERSION_MIN 2 /* Minimum RIL_VERSION supported */
+#else
 #define RIL_VERSION_MIN 6 /* Minimum RIL_VERSION supported */
+#endif
 
 #define CDMA_ALPHA_INFO_BUFFER_LENGTH 64
 #define CDMA_NUMBER_INFO_BUFFER_LENGTH 81
@@ -388,6 +392,7 @@ typedef enum {
     PDP_FAIL_SERVICE_OPTION_NOT_SUBSCRIBED = 0x21, /* no retry */
     PDP_FAIL_SERVICE_OPTION_OUT_OF_ORDER = 0x22,
     PDP_FAIL_NSAPI_IN_USE = 0x23,                  /* no retry */
+    PDP_FAIL_REGULAR_DEACTIVATION = 0x24,          /* restart radio */
     PDP_FAIL_ONLY_IPV4_ALLOWED = 0x32,             /* no retry */
     PDP_FAIL_ONLY_IPV6_ALLOWED = 0x33,             /* no retry */
     PDP_FAIL_ONLY_SINGLE_BEARER_ALLOWED = 0x34,
